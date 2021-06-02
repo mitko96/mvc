@@ -1,0 +1,180 @@
+﻿@model HMS.Models.RecipteModel
+
+@using (Html.BeginForm("Create", "Recipte", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Recipe, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @* @Html.DropDownListFor(model => model.Recipe,  new List<SelectListItem>
+                    {     *@
+                @* <select id="EventId" name="eventId">
+                        <option value="0">Тип рецепта</option>
+                        <option value="1">Рецепта</option>
+                        <option value="2">По здравна каса</option>
+                        <option value="3">По протокол</option>
+
+
+                    </select>
+
+                    <label>Second</label>
+                    <select id="SecondDropdown" name="eventId"></select>
+
+                    <form id="dynamicForm">
+                        <select id="A">
+                            <option value="А1">Тип рецепта</option>
+                            <option value="A2">Рецепта</option>
+                            <option value="A1">По протокол</option>
+                            <option value="A3">По здравна каса</option>
+
+                        </select>
+                        <select id="B"></select>
+
+                        <select id="B">
+                            <option value="C2"></option>
+                        </select>
+                    </form>
+                *@
+                <select id="firstDd" name="firstDd" style="width: 280px;">
+                    <option value="empty">Тип рецепта</option>
+                    <option value="Рецепта">Рецепта</option>
+                    <option value="По протокол">По протокол</option>
+                    <option value="По здравна каса">По здравна каса</option>
+                </select>
+
+
+                @* new SelectListItem() {Text = "Тип рецепта"},
+                                     new SelectListItem() {Text = "Рецепта", Value="Рецепта"},
+                                     new SelectListItem() {Text = "По здравна каса", Value="По здравна каса"},
+                                     new SelectListItem() {Text = "По протокол", Value="По протокол"}
+
+                    }, htmlAttributes: new { @class = "form-control", @style = "width:280px" })*@
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Recipe_type_, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="secondDd" name="secondDd" style="width: 280px;">
+                    <option value="empty"></option>
+
+                    <option value="Бяла рецепта" data-display-on="Рецепта">Бяла рецепта</option>
+                    <option value="Зелена рецепта" data-display-on="Рецепта">Зелена рецепта</option>
+                    <option value="Жълта рецепта" data-display-on="Рецепта">Жълта рецепта</option>
+                    <option value="Нормална рецепта" data-display-on="По здравна каса">Нормална рецепта</option>
+                    <option value="Хронична рецепта" data-display-on="По здравна каса">Хронична рецепта</option>
+                    <option value="По протокол" data-display-on="По протокол"></option>
+                </select>
+                @* @Html.DropDownListFor(model => model.Recipe_type_, new List<SelectListItem>
+                    {
+                                    new SelectListItem() {Text = "Под тип"},
+                                    new SelectListItem() {Text = "Бяла рецепта", Value="Бяла рецепта"},
+                                    new SelectListItem() {Text = "Зелена рецепта", Value="Зелена рецепта"},
+                                    new SelectListItem() {Text = "Жълта рецепта", Value="Жълта рецепта"},
+                                    new SelectListItem() {Text = "Нормална рецепта", Value="Нормална рецепта"},
+                                    new SelectListItem() {Text = "Хронична рецепта", Value="Хронична рецепта"}
+
+                    }, htmlAttributes: new { @class = "form-control", @style = "width:280px" })*@
+
+            </div>
+        </div>
+
+
+
+        @* <div class="form-group">
+                @Html.LabelFor(model => model.End_date_recipe, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.End_date_recipe, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.End_date_recipe, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        *@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Recipe_typeof, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                <select id="ssecondDd" name="ssecondDd" style="width: 280px;">
+                    <option value="Еднократна" data-display-on="Рецепта">Еднократна</option>
+                    <option value="Многократна" data-display-on="Рецепта">Многократна</option>
+                    <option value="А отрязък" data-display-on="По здравна каса">А отрязък</option>
+                    <option value="Б отрязък" data-display-on="По здравна каса">Б отрязък</option>
+                    <option value="С отрязък" data-display-on="По здравна каса">С отрязък</option>
+                </select>
+
+                @* @Html.DropDownListFor(model => model.Recipe_typeof, new List<SelectListItem>
+                        {
+                        new SelectListItem() {Text = "Под тип"},
+                        new SelectListItem() {Text = "А отрязък", Value="А отрязък"},
+                        new SelectListItem() {Text = "B отрязък", Value="B отрязък"},
+                        new SelectListItem() {Text = "C отрязък", Value="C отрязък"}
+                    }, htmlAttributes: new { @class = "form-control", @style = "width:280px" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Number_protocol, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Number_protocol, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Number_protocol, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name_recipe, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name_recipe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name_recipe, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description_recipe, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description_recipe, new { @cols = "100", @rows = "8", @style = "width:100%;" })
+                @Html.ValidationMessageFor(model => model.Description_recipe, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+
+                <input type="submit" name="btn1" value="Запази" class="btnConfirm" style="border-radius:4px; background-color:#30a5ff; font-size: 14px; padding: 6px 12px; color: aliceblue; border-color: #ccc;" />
+            </div>
+        </div>
+    </div>
+}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="//ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $('#firstDd').change(function () {
+        var value = $(this).val();
+        if (value) {
+            var $secondDd = $('#secondDd');
+            var $selectedOption = $('option:selected', $(this));
+            $('option', $secondDd).hide();
+            $('option[data-display-on="' + value + '"]', $secondDd).show();
+        }
+        $($secondDd).val(null);
+        if (value) {
+            var $ssecondDd = $('#ssecondDd');
+            var $selectedOption = $('option:selected', $(this));
+            $('option', $ssecondDd).hide();
+            $('option[data-display-on="' + value + '"]', $ssecondDd).show();
+        }
+        $($ssecondDd).val(null);
+    })
+
+    $('#firstDd').change()
+
+</script>

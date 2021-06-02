@@ -1,0 +1,68 @@
+﻿@model IPagedList<HMS.Models.DoctorsModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+@using PagedList;
+@using PagedList.Mvc;
+<br />
+
+@using (Html.BeginForm("Index", "Doctors", FormMethod.Get))
+{
+    @Html.TextBox("search", null, new { placeholder = "Търсене..." })
+}
+
+
+<div class="row">
+    @if (Model.Count() == 0)
+    {
+
+        <div colspan="3" style="color:red; font-size:150%">
+            Няма намерини резултати
+        </div>
+
+    }
+
+    @if (Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            
+            <div class="col-md-2" style="text-align:center; padding:10px; margin-right:50px; margin-bottom:20px;">
+
+                @{
+
+                    if (item.D_picture != null)
+                    {
+                        string imageBase64 = Convert.ToBase64String(item.D_picture);
+                        string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                        <a href="@Url.Action("Details", "Doctors", new { id = item.Id_d })"><img src="@imageSrc" width="220" height="180" /></a>
+                    }
+                    else if (item.D_picture == null)
+                    {
+                        <a href="@Url.Action("Details", "Doctors", new { id = item.Id_d })">
+                            <img src="~/Content/no-image-1.png" width="220" height="180" />
+                        </a>
+                    }
+                }
+
+                <dd> @Html.DisplayFor(modelItem => item.D_first_name)</dd>
+                <dd> @Html.DisplayFor(modelItem => item.D_family_name)</dd>
+                <dd> @Html.DisplayFor(modelItem => item.D_specialty)</dd>
+
+                @if (Convert.ToString(Session["U_user_level"]) == "Admin")
+                { 
+                @Html.ActionLink("Промяна на профила", "Edit", new { id = item.Id_d }, new { @class = "btn btn-default" }) 
+                    <br/>
+                @Html.ActionLink("Изтриване на профила", "Delete", new { id = item.Id_d }, new { @class="btn btn-default"})
+                }
+
+            </div>
+                            
+                        }
+                    }
+
+</div>
+
+@Html.PagedListPager(Model, i => Url.Action("Index", "Doctors", new { i, search = Request.QueryString["search"] }))
+

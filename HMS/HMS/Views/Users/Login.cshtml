@@ -1,0 +1,54 @@
+﻿@model HMS.Models.UsersModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="~/login/css/font-awesome.css" rel="stylesheet">
+    <link href="~/login/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="~/login/css/font.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="~/login/js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function (c) {
+            $('.alert-close').on('click', function (c) {
+                $('.main-agile').fadeOut('slow', function (c) {
+                    $('.main-agile').remove();
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Hospital Management System</h1>
+    <div class="main-agile">
+        <div class="content-wthree">
+            <div class="circle-w3layouts"></div>
+            <h2>Вход</h2>
+            @using (Html.BeginForm("Login", "Users", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger", @style = "color:red;" })
+                <div class="inputs-w3ls">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    @Html.TextBoxFor(m => m.U_username, new { @class = "form-control", placeholder = "Потребителско име" })
+                    <br />
+                    @Html.ValidationMessageFor(m => m.U_username, "", new { @class = "text-danger", @style = "color:red;" })
+
+                </div>
+                <br />
+                <div class="inputs-w3ls">
+                    <i class="fa fa-key" aria-hidden="true"></i>
+                    @Html.PasswordFor(m => m.U_password, new { @class = "form-control", placeholder = "Парола" })
+                    <br />
+                    @Html.ValidationMessageFor(m => m.U_password, "", new { @class = "text-danger", @style = "color:red;" })
+                </div>
+                <input type="submit" value="Вход" class="btn btn-default" />
+            }
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+﻿@model HMS.Models.PatientsModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Промяна</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="btn btn-default" style="background-color:#F5CC00">
+        @Html.ActionLink("Списък с пациенти", "Index")
+    </div>
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-sm-5">
+
+
+                @Html.LabelFor(model => model.P_first_name, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.P_first_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.P_first_name, "", new { @class = "text-danger" })
+                <br />
+                @Html.LabelFor(model => model.P_mid_name, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.P_mid_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.P_mid_name, "", new { @class = "text-danger" })
+                <br />
+                @Html.LabelFor(model => model.P_family_name, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.P_family_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.P_family_name, "", new { @class = "text-danger" })
+                <br />
+                @Html.LabelFor(model => model.P_egn, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.P_egn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.P_egn, "", new { @class = "text-danger" })
+                <br />
+
+                @Html.LabelFor(model => model.P_gender, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownListFor(model => model.P_gender,  new List<SelectListItem>
+        {
+                         new SelectListItem() {Text = "Избери пол"},
+                         new SelectListItem() {Text = "Мъж", Value="Мъж"},
+                         new SelectListItem() {Text = "Жена", Value="Жена"},
+                         new SelectListItem() {Text = "Друг", Value="Друг"}
+
+        }, htmlAttributes: new { @class = "form-control", @style = "width:280px" })
+
+                <br /><br /> <input type="submit" value="Добавяне" class="btn btn-default col-md-offset-2 col-md-5" />
+            </div>
+            <div class="col-sm-5">
+
+                @Html.LabelFor(model => model.P_phone, htmlAttributes: new { @class = "control-label col-md-3" })
+
+                @Html.EditorFor(model => model.P_phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.P_phone, "", new { @class = "text-danger" })
+                <br />
+                @Html.LabelFor(model => model.P_address, htmlAttributes: new { @class = "control-label col-md-3" })
+
+                @Html.EditorFor(model => model.P_address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.P_address, "", new { @class = "text-danger" })
+                <br />
+
+
+                @Html.LabelFor(model => model.P_blood_group, htmlAttributes: new { @class = "control-label col-md-3" })
+                @Html.DropDownListFor(model => model.P_blood_group,  new List<SelectListItem>
+         {
+                          new SelectListItem() {Text = "Избери кръвна група"},
+                          new SelectListItem() {Text = "A+", Value="A+"},
+                          new SelectListItem() {Text = "0+", Value="0+"},
+                          new SelectListItem() {Text = "B+", Value="B+"},
+                          new SelectListItem() {Text = "AB+", Value="AB+"},
+                          new SelectListItem() {Text = "A-", Value="A-"},
+                          new SelectListItem() {Text = "0-", Value="0-"},
+                          new SelectListItem() {Text = "B-", Value="B-"},
+                          new SelectListItem() {Text = "AB-", Value="AB-"},
+
+         }, htmlAttributes: new { @class = "form-control", @style = "width:280px" })
+
+                <br />
+
+                @Html.LabelFor(model => model.P_datetime, htmlAttributes: new { @class = "control-label col-md-3" })
+
+                @Html.EditorFor(model => model.P_datetime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.P_datetime, "", new { @class = "text-danger" })
+                <br />
+
+                @Html.LabelFor(model => model.email_pat, htmlAttributes: new { @class = "control-label col-md-3" })
+
+                @Html.EditorFor(model => model.email_pat, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.email_pat, "", new { @class = "text-danger" })
+                <br />
+
+                @Html.HiddenFor(model => model.Id_doc, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+}

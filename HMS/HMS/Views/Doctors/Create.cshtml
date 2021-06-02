@@ -1,0 +1,151 @@
+﻿@model HMS.Models.CC
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Добавяне на доктор</h2>
+<script>
+    var previewimg = function (event) {
+        var result = document.getElementById("imgpreview");
+        result.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
+
+@using (Html.BeginForm("Create", "Doctors", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        <div>
+            @*  @Html.ActionLink("Назад", "Index", new { id = Model.DocModel.Id_d })*@
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="col-md-3" style="text-align:center; padding:10px; margin-right:80px; margin-bottom:20px;">
+
+            <img id="imgpreview" width="320" height="350" src="~/Content/no-image-1.png" />
+
+            <br /><br /> <input type="file" id="image1" name="image1" onchange="previewimg(event)" />
+            
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+
+                @Html.LabelFor(model => model.DocModel.D_first_name, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.DocModel.D_first_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DocModel.D_first_name, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(model => model.DocModel.D_mid_name, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.DocModel.D_mid_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DocModel.D_mid_name, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(model => model.DocModel.D_family_name, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.DocModel.D_family_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DocModel.D_family_name, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(model => model.DocModel.D_specialty, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.DocModel.D_specialty, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DocModel.D_specialty, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(model => model.DocModel.D_spec, htmlAttributes: new { @class = "control-label col-md-2" })
+              
+                @if (Convert.ToString(Session["U_user_level"]) == "Admin")
+                {
+
+                    @Html.EditorFor(model => model.DocModel.D_spec, new { htmlAttributes = new { @class = "form-control" }  })
+                }
+                else
+                {
+                @Html.EditorFor(model => Session["D_spec"], new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.DocModel.D_spec, "", new { @class = "text-danger" })
+                }
+
+                @Html.LabelFor(model => model.DocModel.D_floor, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.DocModel.D_floor, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DocModel.D_floor, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(model => model.DocModel.D_gender, htmlAttributes: new { @class = "control-label col-md-10", @style = "text-align:left" })
+                @*Session["D_spec"]*@
+
+                @Html.DropDownListFor(model => model.DocModel.D_gender,  new List<SelectListItem>
+         {
+                             new SelectListItem() {Text = "Избери пол"},
+                             new SelectListItem() {Text = "Мъж", Value="Мъж"},
+                             new SelectListItem() {Text = "Жена", Value="Жена"},
+                             new SelectListItem() {Text = "Друг", Value="Друг"}
+
+         }, htmlAttributes: new { @class = "form-control", @style = "width:235px" })
+
+
+
+
+
+
+
+
+                <br /><br /> <input type="submit" value="Запазване" class="btn btn-default" , style='width:100%' />
+            </div>
+
+            <div class="col-sm-3">
+                @Html.LabelFor(model => model.DocModel.D_phone, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.DocModel.D_phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DocModel.D_phone, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(model => model.DocModel.D_email, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.DocModel.D_email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DocModel.D_email, "", new { @class = "text-danger" })
+
+
+                @Html.LabelFor(model => model.DocModel.D_egn, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.DocModel.D_egn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DocModel.D_egn, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(model => model.DocModel.D_city, htmlAttributes: new { @class = "control-label col-md-2" })
+                @if (Convert.ToString(Session["U_user_level"]) == "Admin")
+                {
+                    @Html.EditorFor(model => model.DocModel.D_city, new { htmlAttributes = new { @class = "form-control" } })
+                }
+                else
+                {
+                    @Html.EditorFor(model => Session["doc_city"], new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })}
+                @Html.ValidationMessageFor(model => model.DocModel.D_city, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(model => model.DocModel.D_room, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.DocModel.D_room, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DocModel.D_room, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.UserModel.U_username, htmlAttributes: new { @class = "control-label col-md-10", @style = "text-align:left" })
+
+                @Html.EditorFor(model => model.UserModel.U_username, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserModel.U_username, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.UserModel.U_password, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.UserModel.U_password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserModel.U_password, "", new { @class = "text-danger" })
+
+            </div>
+
+
+
+            </div>
+       
+
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

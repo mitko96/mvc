@@ -1,0 +1,131 @@
+﻿@model HMS.Models.DoctorsModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Промяна на профила</h2>
+
+
+@using (Html.BeginForm("Edit", "Doctors", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="btn btn-default" style="background-color:#F5CC00">
+        @Html.ActionLink("Назад", "Index", new { id = Model.Id_d })
+    </div>
+    <div class="form-horizontal">
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="col-md-3" style="text-align:center; padding:10px; margin-right:80px; margin-bottom:20px;">
+            @{
+
+                if (Model.D_picture != null)
+                {
+                    string imageBase64 = Convert.ToBase64String(Model.D_picture);
+                    string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                    <img src="@imageSrc" width="320" height="350" />
+                }
+                else if (Model.D_picture == null)
+                {
+                    <img src="~/Content/no-image-1.png" width="220" height="180" />
+
+                }
+            }
+
+
+            <br /><br /> <input type="file" id="image1" name="image1" />
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+
+                @Html.LabelFor(model => model.D_first_name, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.D_first_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.D_first_name, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(model => model.D_mid_name, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.D_mid_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.D_mid_name, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(model => model.D_family_name, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.D_family_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.D_family_name, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(model => model.D_specialty, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.D_specialty, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.D_specialty, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(model => model.D_spec, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.D_spec, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.D_spec, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(model => model.D_gender, htmlAttributes: new { @class = "control-label col-md-10", @style = "text-align:left" })
+
+
+                @Html.DropDownListFor(model => model.D_gender,  new List<SelectListItem>
+         {
+                             new SelectListItem() {Text = "Избери пол"},
+                             new SelectListItem() {Text = "Мъж", Value="Мъж"},
+                             new SelectListItem() {Text = "Жена", Value="Жена"},
+                             new SelectListItem() {Text = "Друг", Value="Друг"}
+
+         }, htmlAttributes: new { @class = "form-control", @style = "width:235px" })
+
+                @Html.LabelFor(model => model.D_floor, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.D_floor, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.D_floor, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="col-sm-3">
+                @Html.LabelFor(model => model.D_phone, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.D_phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.D_phone, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(model => model.D_email, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.D_email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.D_email, "", new { @class = "text-danger" })
+
+
+                @Html.LabelFor(model => model.D_egn, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.D_egn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.D_egn, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(model => model.D_city, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.D_city, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.D_city, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(model => model.D_room, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.D_room, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.D_room, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+
+        <div class="col-md-offset-5 col-md-10">
+            <br /> <input type="submit" value="Запазване" class="btn btn-default" />
+        </div>
+
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

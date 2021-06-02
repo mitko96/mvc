@@ -1,0 +1,65 @@
+﻿@model IEnumerable<HMS.Models.PatientsModel>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+}
+</br>
+
+@using (Html.BeginForm("Index", "Patient", FormMethod.Get))
+{
+    @Html.TextBox("search", null, new { placeholder = "Търсене..." })
+}
+<h2>Списък с пациенти</h2>
+
+<table class="table">
+
+
+    @foreach (var item in Model)
+    {
+
+
+        if (Convert.ToInt32(Session["id_pat_dr"]) == item.Id_doc)
+        {
+
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.P_first_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.P_mid_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.P_family_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.P_egn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.P_gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.P_phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.P_address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.P_datetime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.P_blood_group)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Детайли", "Details", new { id = item.Id_p }, new { @class = "btn btn-default" })
+
+                </td>
+            </tr>
+        }
+    }
+
+
+</table>
+@* @Html.PagedListPager(Model, i => Url.Action("Index", "Patient", new { i, search = Request.QueryString["search"] }))*@

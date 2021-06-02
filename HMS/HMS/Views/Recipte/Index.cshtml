@@ -1,0 +1,40 @@
+﻿@model IEnumerable<HMS.Models.RecipteModel>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Start_date_recipe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name_recipe)
+        </th>
+
+
+
+        <th class="col-md-2"></th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Start_date_recipe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name_recipe)
+            </td>
+
+
+            <td>
+                <a href="@Url.Action("View", new { id = item.Id_r })" class="fas fa-notes-medical" style="font-size: 19px; color: red"></a>
+
+            </td>
+
+        </tr>
+
+    }
+
+</table>

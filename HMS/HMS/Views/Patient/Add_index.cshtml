@@ -1,0 +1,111 @@
+﻿@model IEnumerable<HMS.Models.ViewModel>
+
+@{
+    ViewBag.Title = "Add_index";
+}
+
+<h2>Add_index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_p)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P_first_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P_mid_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P_family_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P_egn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P_gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P_phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P_address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P_datetime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P_blood_group)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_doc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_add)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_patient)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_doctor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_p)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_first_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_mid_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_family_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_egn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_datetime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_blood_group)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_doc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_add)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_patient)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_doctor)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

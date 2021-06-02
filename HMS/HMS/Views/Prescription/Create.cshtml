@@ -1,0 +1,84 @@
+﻿@model HMS.Models.PrescriptionModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Резултат от медицинския тест</h2>
+<div class="btn btn-default" style="background-color:#F5CC00">
+    @Html.ActionLink("Списък с пациенти", "Index", "Patient")
+</div>
+
+@using (Html.BeginForm("Create", "Prescription", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <br />
+    <div class="row">
+        <div class="col-sm-6">
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.medicial_test, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.medicial_test, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.medicial_test, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.result, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.result, new { @cols = "100", @rows = "8", @style = "width:100%;" })
+                        @Html.ValidationMessageFor(model => model.result, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Medicine, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Medicine, new { @cols = "100", @rows = "8", @style = "width:100%;" })
+                        @Html.ValidationMessageFor(model => model.Medicine, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
+                        <br />
+                        <input type="file" id="file" name="file" />
+                        <br />
+                        <input type="submit" name="btn2" value="Запазване" class="btn btn-default" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            @{Html.RenderAction("Create", "Recipte");}
+
+        </div>
+        <script>
+             $(document).on('click', '.btnConfirm', function(){
+        $.ajax({
+        url: '@Url.Action("Create", "Recipte")',
+        type: 'POST',
+        cache: false,
+        async: true,
+        data: $('form').serialize(),
+        success: function(result){
+        //do something
+        }
+        });
+            });
+        </script>
+
+    </div>
+
+}
+    <script>
+
+        </script>

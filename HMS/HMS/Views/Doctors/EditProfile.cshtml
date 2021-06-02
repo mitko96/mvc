@@ -1,0 +1,90 @@
+﻿@model IEnumerable<HMS.Models.DoctorsModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+@using PagedList;
+@using PagedList.Mvc;
+<br />
+
+@using (Html.BeginForm("EditProfile", "Doctors", FormMethod.Get))
+{
+  
+}
+<p>
+    <div class="btn btn-default" style="background-color:#F5CC00">
+        @Html.ActionLink("Добавяне на нов доктор", "Create")
+        </div>
+</p>
+<br/><br /><br />
+           <div class="form-horizontal">
+
+               @foreach (var item in Model)
+               {
+
+                   <div class="col-md-3" style="text-align:center; padding:10px; margin-right:80px; margin-bottom:20px;">
+                       @{
+                           if (item.D_picture != null)
+                           {
+                               string imageBase64 = Convert.ToBase64String(item.D_picture);
+                               string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                               <img src="@imageSrc" width="300" height="300" />
+                           }
+                           else if (item.D_picture == null)
+                           {
+                               <img src="~/Content/no-image-1.png" width="150" height="100" />
+                           }
+                       }
+                   </div>
+
+                   <div class="row">
+                       <div class="col-sm-3">
+                           <br />
+                           <strong> @Html.DisplayNameFor(model => model.D_first_name)</strong> @Html.DisplayFor(modelItem => item.D_first_name)
+                           <br /> <br />
+                           <strong>@Html.DisplayNameFor(model => model.D_family_name)</strong> @Html.DisplayFor(modelItem => item.D_family_name)
+                           <br /> <br />
+                           <strong>
+                               @Html.DisplayNameFor(model => model.D_phone)
+                           </strong> @Html.DisplayFor(modelItem => item.D_phone)
+                           <br /> <br />
+                           <strong>
+                               @Html.DisplayNameFor(model => model.D_gender)
+                           </strong>  @Html.DisplayFor(modelItem => item.D_gender)
+                           <br /> <br />
+                           <strong>@Html.DisplayNameFor(model => model.D_city)</strong>  @Html.DisplayFor(modelItem => item.D_city)
+                           <br /> <br />
+                           <strong>@Html.DisplayNameFor(model => model.D_room)</strong>  @Html.DisplayFor(modelItem => item.D_room)
+                       </div>
+
+                       <div class="col-sm-3">
+                           <br />
+                           <strong>@Html.DisplayNameFor(model => model.D_mid_name)</strong>  @Html.DisplayFor(modelItem => item.D_mid_name)
+                           <br /> <br />
+                           <strong>@Html.DisplayNameFor(model => model.D_specialty)</strong>  @Html.DisplayFor(modelItem => item.D_specialty)
+                           <br /> <br />
+                           <strong>@Html.DisplayNameFor(model => model.D_email)</strong>  @Html.DisplayFor(modelItem => item.D_email)
+                           <br /> <br />
+                           <strong>@Html.DisplayNameFor(model => model.D_egn)</strong>  @Html.DisplayFor(modelItem => item.D_egn)
+                           <br /> <br />
+                           <strong>@Html.DisplayNameFor(model => model.D_floor)</strong>  @Html.DisplayFor(modelItem => item.D_floor)
+                           <br /> <br />
+                           <strong>@Html.DisplayNameFor(model => model.D_spec)</strong>  @Html.DisplayFor(modelItem => item.D_spec)
+                       </div>
+                   </div>
+
+                   <div class="col-sm-3">
+                      
+                   </div>
+                   <br /> @Html.ActionLink("Промяна на профила", "Edit", new { id = item.Id_d }, new { @class = "btn btn-primary" })
+
+
+
+
+
+
+               }
+
+           </div>
+
+

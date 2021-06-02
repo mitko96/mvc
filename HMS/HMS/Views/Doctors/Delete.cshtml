@@ -1,0 +1,139 @@
+﻿@model HMS.Models.DoctorsModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Сигурни ли сте, че искате да изтриете този профил?</h3>
+<div>
+    <div class="btn btn-default" style="background-color:#F5CC00">
+        @Html.ActionLink("Назад", "Index")
+    </div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_d)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_d)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.D_first_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.D_first_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.D_mid_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.D_mid_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.D_family_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.D_family_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.D_specialty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.D_specialty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.D_gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.D_gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.D_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.D_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.D_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.D_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.D_egn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.D_egn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.D_city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.D_city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.D_rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.D_rating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.D_content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.D_content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.D_room)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.D_room)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.D_floor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.D_floor)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.D_spec)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Изтриване" class="btn btn-default" />
+        </div>
+    }
+</div>

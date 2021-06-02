@@ -1,0 +1,43 @@
+﻿@model IEnumerable<HMS.Models.PrescriptionModel>
+<h2>Резултати от медицински тестове</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date_pre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.medicial_test)
+        </th>
+
+
+          
+        <th class="col-md-2"></th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date_pre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.medicial_test)
+        </td>
+        
+        <td>
+            @if (item.file_name != null)
+            {<a href="@Url.Action("DownLoadFile", new { id = item.Id_prescription })" class="fas fa-download" style="font-size: 19px; color: #30a5ff"></a>}
+            </td> 
+        
+        <td>
+            <a href="@Url.Action("View", new { id = item.Id_prescription })" class="fas fa-notes-medical" style="font-size: 19px; color: red"></a>
+
+        </td>
+
+    </tr>
+ 
+}
+
+</table>

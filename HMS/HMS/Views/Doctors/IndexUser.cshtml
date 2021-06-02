@@ -1,0 +1,23 @@
+﻿@model IEnumerable<HMS.Models.UsersModel>
+
+
+
+
+@foreach (var item in Model)
+{
+    if (Convert.ToString(Session["U_user_level"]) == "Admin")
+    {
+        <strong>
+            @Html.DisplayNameFor(model => model.U_username)
+        </strong>
+        @Html.DisplayFor(modelItem => item.U_username)
+        <strong>
+            <br /> <br />
+            @Html.DisplayNameFor(model => model.U_password)
+        </strong>
+        @Html.DisplayFor(modelItem => item.U_password)
+
+
+    }
+}
+

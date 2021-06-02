@@ -1,0 +1,71 @@
+﻿@model HMS.Models.DoctorsModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Детайли</h2>
+<div class="btn btn-default" style="background-color:#F5CC00">
+    @Html.ActionLink("Списък с доктори", "Index")
+</div>
+<div class="form-horizontal">
+    <div class="col-md-3" style="text-align:center; padding:10px; margin-right:80px; margin-bottom:20px;">
+        @{
+            if (Model.D_picture != null)
+            {
+                string imageBase64 = Convert.ToBase64String(Model.D_picture);
+                string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                <img src="@imageSrc" width="300" height="300" />
+            }
+            else if (Model.D_picture == null)
+            {
+                <img src="~/Content/no-image-1.png" width="150" height="100" />
+            }
+        }
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <br />
+            <strong> @Html.DisplayNameFor(model => model.D_first_name)</strong> @Html.DisplayFor(model => model.D_first_name)
+            <br /> <br />
+            <strong>@Html.DisplayNameFor(model => model.D_family_name)</strong> @Html.DisplayFor(model => model.D_family_name)
+            <br /> <br />
+            <strong>
+                @Html.DisplayNameFor(model => model.D_phone)
+            </strong> @Html.DisplayFor(model => model.D_phone)
+            <br /> <br />
+            <strong>
+                @Html.DisplayNameFor(model => model.D_gender)
+            </strong>  @Html.DisplayFor(model => model.D_gender)
+            <br /> <br />
+            <strong>@Html.DisplayNameFor(model => model.D_city)</strong>  @Html.DisplayFor(model => model.D_city)
+            <br /> <br />
+            <strong>@Html.DisplayNameFor(model => model.D_room)</strong>  @Html.DisplayFor(model => model.D_room)
+            <br /> <br />
+            @{Html.RenderAction("IndexUser", "Doctors");}
+        </div>
+
+        <div class="col-sm-3">
+            <br />
+            <strong>@Html.DisplayNameFor(model => model.D_mid_name)</strong>  @Html.DisplayFor(model => model.D_mid_name)
+            <br /> <br />
+            <strong>@Html.DisplayNameFor(model => model.D_specialty)</strong>  @Html.DisplayFor(model => model.D_specialty)
+            <br /> <br />
+            <strong>@Html.DisplayNameFor(model => model.D_email)</strong>  @Html.DisplayFor(model => model.D_email)
+           
+            <br /> <br />
+            <strong>@Html.DisplayNameFor(model => model.D_floor)</strong>  @Html.DisplayFor(model => model.D_floor)
+            <br /> <br />
+            <strong>@Html.DisplayNameFor(model => model.D_spec)</strong>  @Html.DisplayFor(model => model.D_spec)
+
+        </div>
+        
+    </div>
+</div>
+
+@if (Convert.ToString(Session["U_user_level"]) == "Admin")
+{
+    @Html.ActionLink("Промяна на профила", "Edit", new { id = Model.Id_d }, new { @class = "btn btn-default" })
+
+}
+
